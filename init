@@ -1,0 +1,37 @@
+--
+-- Database: `beer_listing`
+--
+
+CREATE database IF NOT EXISTS `beer_listing`
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `beer_listing`.`account` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `status` text NOT NULL,
+  `token` text NOT NULL,
+
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Table structure for table `beer`
+--
+
+CREATE TABLE IF NOT EXISTS `beer_listing`.`beer` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  `style` varchar(150) NOT NULL,
+  `abv` double NOT NULL,
+  `description` varchar(150) NOT NULL,
+  `brewery` varchar(150) NOT NULL,
+  `location` varchar(150) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

@@ -1,0 +1,628 @@
+<html>
+<head>
+<style>
+	*{
+		font-family: 'Lato', sans-serif;
+	}
+	body, html {
+		margin: 0;
+		padding: 0;
+		//background: #1e1d23;
+	}
+	/* header */
+		.header{
+			width: 100%;
+			height: 64px;
+			background: #2196f3;
+		}
+		.header .header-btn{
+			height: 100%;
+  			float: right;
+  			background: none;
+  			color: white;
+  			padding: 0 18px;
+  			border: none;
+  			font-size: 15px;
+  			cursor: pointer;
+		}
+		.header .header-btn:focus{
+			outline: none;
+		}
+		.header .header-btn:hover{
+			background: #1976d2;
+		}
+		#logoutBtn{
+
+		}
+		#manageBtn{
+			//display: none;
+		}
+	/* end header */
+	/* modal */
+		.modal-overlay{
+			background: rgba(35, 20, 16, 0.9);
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			text-align: center;
+		}
+		.modal{
+			width: 320px;
+  			color: black;
+			background: white;
+			border-radius: 8px 8px 0 0;
+  			position: relative;
+  			margin: 0 auto;
+  			margin-top: 160px;
+  			display: none;
+		}
+		.modal .modal-header{
+			color: white;
+  			padding-top: 16px;
+  			padding-bottom: 10px;
+  			padding-left: 16px;
+  			text-align: left;
+  			font-weight: bold;
+  			color: #9E9E9E;
+		}
+		#loginModal{
+			display: block;
+		}
+		.modal-message{
+			display: none;
+  			color: red;
+  			text-align: center;
+  			padding-right: 16px;
+  			padding-top: 16px;
+  			margin-bottom: -34px;
+		}
+		.modal .modal-input-container{
+			padding: 16px;
+			padding-bottom: 32px;
+			padding-top: 0;
+		}
+		.modal .modal-input-container .modal-input{
+			color: #9E9E9E;
+  			border: none;
+  			border-bottom: 1px solid #9E9E9E;
+  			background: none;
+  			font-size: 16px;
+			border-color: #9E9E9E;
+			padding-top: 32px;
+			width: 80%;
+		}
+		.modal-btn{
+			width:50%;
+			padding: 16px;
+			text-align: center;
+			color: white;
+			font-size: 16px;
+			border: none;
+			font-weight: bold;
+			float: left;
+			background: #2196f3;
+			border-radius: 0 0 8px 8px;
+			cursor: pointer;
+		}
+		.modal-input:focus{
+			outline: none;
+		}
+		.login-modal .modal-btn:focus{
+			outline: none;
+		}
+		.login-modal .modal-btn:hover{
+			background: #1976d2;
+		}
+		.submit-btn{
+			background: #4CB812;
+			border-radius: 0 0 0 8px;
+		}
+		.cancel-btn{
+			background: #C41339;
+			border-radius: 0 0 8px 0;
+		}
+		.login-btn{
+			width: 100%;
+			padding: 16px;
+			text-align: center;
+			color: white;
+			font-size: 16px;
+			border: none;
+			font-weight: bold;
+		}
+		.delete-header{
+			text-align: center;
+		}
+	/* end modal */
+	/* table */
+		#beerListingTable{
+			text-align: center;
+			min-width: 900px;
+			margin: auto;
+			padding: 16px;
+		}
+		th{
+			text-align: left;
+			padding: 0 10px;
+		}
+		td{
+			text-align: left;
+			padding: 0 10px;
+		}
+		.abv-td{
+			text-align: center;
+		}
+		.delete-beer{
+			text-align: center;
+			color: red;
+			cursor: pointer;
+		}
+	/* end table */
+
+	/* form */
+		form{
+			margin-top: 69px;
+  			//width: 960px;
+  			margin: auto;
+  			//margin-top: 69px;
+  			color: white;
+  			background: #2196f3;
+		}
+		label{
+			display: block;
+		}
+		.form-input-container{
+			float: left;
+			padding: 16px;
+			text-align: left;
+		}
+		.form-submit-container{
+			float: left;
+		}
+		#beerSubmit{
+  			height: 81px;
+  			padding: 16px;
+  			background: #2196f3;
+  			//border-radius: 3px;
+  			color: white;
+  			border: none;
+  			cursor: pointer;
+  			font-size: 16px;
+		}
+		#beerSubmit:hover{
+			background: #1976d2;
+			border: none;
+			outline: none;
+		}
+		#beerSubmit:focus{
+			outline: none;
+		}
+		#abvInput{
+			width: 40px;
+		}
+		.input-error{
+			border: 1px solid red;
+		}
+			form{
+			display: inline-block;
+		}
+		.form-input-container input{
+			background: none;
+  			/* border: 1px solid white; */
+  			border: none;
+  			border-bottom: 1px solid white;
+  			/* border-radius: 3px; */
+  			font-size: 22;
+  			//color: white;
+		}
+		.form-input-container input:focus{
+			outline: none;
+			border-bottom: 1px solid white;
+		}
+	/* end form */
+
+	::-webkit-input-placeholder {
+   		color: #9E9E9E;
+	}
+	
+	:-moz-placeholder { /* Firefox 18- */
+	   color: #9E9E9E;  
+	}
+	
+	::-moz-placeholder {  /* Firefox 19+ */
+	   color: #9E9E9E;  
+	}
+	
+	:-ms-input-placeholder {  
+	   color: #9E9E9E;  
+	}
+	input[type=number]::-webkit-inner-spin-button, 
+	input[type=number]::-webkit-outer-spin-button { 
+	  -webkit-appearance: none; 
+	  margin: 0; 
+	}
+	
+	.content-body{
+		text-align: center;
+	}
+	.form-container{
+		width: 100%;
+		//background: #2196f3;
+		border-top: 4px solid white;
+	}
+</style>
+<link href='http://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+</head>
+<body>
+	<div class="modal-overlay">
+		<div id="loginModal" class="login-modal modal">
+			<div class="modal-header">
+				Login
+				<div class="modal-message" id="loginMsg"></div>
+			</div>
+			<div class="modal-input-container">
+				<input id='loginUserInput' class="modal-input modal-input" type="text" placeholder="Username">
+				<input id='loginPwInput' class="modal-input modal-input" type="password" placeholder="Password">
+			</div>
+			<button class="modal-btn login-btn">Login</button>
+		</div>
+		<div class="delete-modal modal">
+			<div class="modal-header">
+				Delete Beer?
+				<div class="modal-message" id="deleteMsg"></div>
+			</div>
+			<button id="deleteBtn" class="modal-btn submit-btn">Delete</button>
+			<button class="modal-btn cancel-btn">Cancel</button>
+		</div>
+		<div id="menuModal" class="change-pw-modal modal">
+			<div class="modal-header">
+				Change Password?
+				<div class="modal-message" id="changePwMsg"></div>
+			</div>
+			<div class="modal-input-container">
+				<input id="changePwInput" class="modal-input" type="password" placeholder="New Password">
+				<input id="confirmChangePwInput" class="modal-input" type="password" placeholder="Confirm New Password">
+			</div>
+			<button id="changePwBtn" class="modal-btn submit-btn">Change</button>
+			<button class="modal-btn cancel-btn">Cancel</button>
+		</div>
+	</div>
+	<div class="header">
+		<button id="logoutBtn" class="header-btn">Logout</button>
+		<button id="manageBtn" class="header-btn">Change Password</button>
+	</div>
+	<div class="content-body">
+		<div class="form-container">
+			<form>
+				<!--<fieldset>-->
+					<div class="form-input-container">
+						<label for="NameInput">Name: </label>
+						<input id="nameInput" type="text" name="NameInput">
+					</div>
+					<div class="form-input-container">
+						<label for="StyleInput">Style: </label>
+						<input id="styleInput" type="text" name="StyleInput">
+					</div>
+					<div class="form-input-container">
+						<label for="AbvInput">ABV: </label>
+						<input  type="number" name="AbvInput" id="abvInput">
+					</div>
+					<div class="form-input-container">
+						<label for="Brewery">Brewery: </label>
+						<input id="breweryInput" type="text" name="Brewery">
+					</div>
+					<div class="form-input-container">
+						<label for="Location">Location: </label>
+						<input id="locationInput" type="text" name="Location">
+					</div>
+					<div class="form-submit-container">
+					<button id="beerSubmit" type="submit"> Add New beer </button>
+					</div>
+				<!--</fieldset>-->
+			</form>
+		</div>
+		<div class="beer-container">
+			<div class="beer-img-container"></div>
+			<div class="beer-data-container"></div>
+			<div class="beer-delete-container"></div>
+		</div>
+	</div>
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script>
+	//next step encapsulation
+	var app = function(){
+		var self = this;
+		self.services = new Services();
+
+		self.init = function(){
+			$(document).ready(function(){
+				services = new Services();
+		
+				$('#beerSubmit').on('click', function(e){
+				e.preventDefault();
+				var noErrors = true;
+				if ( $('#nameInput').val() == "" ){
+					$('#nameInput').addClass('input-error');
+					noErrors = false;
+				} 
+				if ( $('#styleInput').val() == "" ){
+					$('#styleInput').addClass('input-error');
+					noErrors = false;
+				}
+				if ( $('#abvInput').val() == "" ){
+					$('#abvInput').addClass('input-error');
+					noErrors = false;
+				}
+				if ( $('#breweryInput').val() == "" ){
+					$('#breweryInput').addClass('input-error');
+					noErrors = false;
+				}
+				if ( $('#locationInput').val() == "" ){
+					$('#locationInput').addClass('input-error');
+					noErrors = false;
+				} 
+	
+				if (noErrors == true) {
+					$('input').removeClass('input-error');
+					var newBeer = {
+						name: $('#nameInput').val(),
+						style: $('#styleInput').val(),
+						abv: $('#abvInput').val(),
+						brewery: $('#breweryInput').val(),
+						location: $('#locationInput').val()
+					}
+					services.createBeer(newBeer);
+				}
+				});
+				$('.cancel-btn').on('click', function(e){
+					hideModal();
+				});
+				$('.submit-btn').on('click', function(e){
+					var id = $('.delete-modal').data('id');
+					services.deleteBeer(id);
+				});
+				$('.login-btn').on('click', function(e){
+					services.login($('#loginUserInput').val(), $('#loginPwInput').val());
+				})
+				$('#logoutBtn').on('click', function(e){
+					showLogin();
+					$('#beerListingTable').remove();
+				});
+			});
+		}
+	};
+
+	var services;
+	var Services = function(){
+		var self = this;
+
+		self.token = '';
+		self.username = '';
+		//testing
+		//self.beerEndpoint = 'http://localhost/BeerList/BackEnd/Beer.php';
+		//self.loginEndpoint = 'http://localhost/BeerList/BackEnd/Login.php';
+		//production
+		self.beerEndpoint = 'http://boredknight.com/beerlist/webcalls/beer.php';
+		self.loginEndpoint = 'http://boredknight.com/beerlist/webcalls/login.php';
+
+		self.createBeer = function(newBeer){
+			newBeer.token = self.token;
+			$.ajax({
+				url: self.beerEndpoint,
+				method: "POST",
+				data: newBeer,
+				success: function(data){
+					appendBeerToTable(data.id);
+				},
+				error: function(data){
+					if (data.status == 403){
+
+					}
+				}
+	
+			});
+		}
+		self.deleteBeer = function(id){
+			$.ajax({
+				url: self.beerEndpoint+'?id='+id+'&token='+self.token,
+				method: "DELETE",
+				success: function(data){
+					$('#' + data.id).parent().remove();
+					hideModal();
+				}
+	
+			});
+		}
+		self.login = function(username, password){
+			self.username = username;
+			$.ajax({
+				url: self.loginEndpoint + '?username=' + username + '&password=' + password,
+				method: "GET",
+				success: function(data){
+					self.token = data.token;
+					insertBeerTable($('.content-body'));
+					$('#loginMsg').hide();
+					hideModal();
+				},
+				error: function(data){
+					$('#loginMsg').html('Error: Credentials Incorrect').show();
+				}
+			});
+		}
+		self.changePW = function(password, confirmpw){
+			$.ajax({
+				url: self.loginEndpoint,
+				method: 'PUT',
+				data:{
+					name: self.username,
+					password: password,
+					confirmPW: confirmpw,
+					token: self.token
+				},
+				success: function(data){
+					$('#changePwMsg').html('Success Password Changed!').show();
+					setTimeout(function(){
+						hideModal();
+						$('#changePwMsg').hide();
+					}, 300);
+				},
+				error: function(data){
+					$('#changePwMsg').html('Error: passwords do not match!').show();
+				}
+			});
+		}
+	};
+	function showLogin(){
+		services.token = '';
+		$('.modal-overlay').show();
+		$('#loginModal').show();
+	}
+	function showMenuModal(){
+		$('.modal-overlay').show();
+		$('#menuModal').show();
+	}
+	function initBeerDeleteBtn(){
+		$('.delete-beer').off('click');
+		$('.delete-beer').on('click', function(e){
+			$('.delete-modal').data('id', $(e.target).attr('id'));
+			$('.delete-modal').show();
+			$('.modal-overlay').show();
+		});
+	}
+	function hideModal(){
+		$('.modal').hide();
+		$('.modal').data('id', '');
+		$('.modal-input').val('');
+		$('.modal-overlay').hide();
+	}
+	function insertBeerTable(parentElement){
+		//var endpoint = 'http://localhost/BeerList/BackEnd/Beer.php';
+		var endpoint = services.beerEndpoint;
+		var table = '<table id="beerListingTable"><thead><tr>'+
+						'<th> Name </th>' +
+						'<th> Style </th>' +
+						'<th> ABV </th>' +
+						'<th> Brewery </th>' +
+						'<th> Location </th>' +
+						'<th class="delete-header"> Remove? </th>' +
+					'</tr></thead><tbody id="beerListBody"></tbody></table>';
+		parentElement.append(table);
+	
+		$.ajax({
+	        url: endpoint,
+	        success: function(data) {
+	        	if (data.results){
+	            	for (var i = 0; i < data.results.length; i++){
+	            		var newRow = '<tr>'+
+	            						'<td>' + data.results[i].name + '</td>'  +
+	            						'<td>' + data.results[i].style + '</td>'  +
+	            						'<td>' + data.results[i].abv + '% </td>'  +
+	            						'<td>' + data.results[i].brewery + '</td>'  +
+	            						'<td>' + data.results[i].location + '</td>'  +
+	            						'<td id="' + data.results[i].ID +'" class="delete-beer">X</td>' 	+
+	            					'</tr>';
+	            		$('#beerListBody').append(newRow);
+	            	}
+	            }
+	            initBeerDeleteBtn();
+	        }
+	    });
+	}
+	function clearInputs(){
+		$('#nameInput').val('');
+		$('#styleInput').val('');
+		$('#abvInput').val('');
+		$('#breweryInput').val('');
+		$('#locationInput').val('');
+	}
+	function appendBeerToTable(id){
+		var newBeer = {
+			id: id,
+			name: 	  $('#nameInput').val(),
+			style: 	  $('#styleInput').val(),
+			abv: 	  $('#abvInput').val(),
+			brewery:  $('#breweryInput').val(),
+			location: $('#locationInput').val()
+		}
+		var newRow = '<tr>'+
+	    				'<td>' + newBeer.name + '</td>'  +
+	    				'<td>' + newBeer.style + '</td>'  +
+	    				'<td>' + newBeer.abv + '% </td>'  +
+	    				'<td>' + newBeer.brewery + '</td>'  +
+	    				'<td>' + newBeer.location + '</td>'  +
+	    				'<td id="' + newBeer.id +'" class="delete-beer">X</td>' +
+	    			'</tr>';
+	    $('#beerListBody').append(newRow);
+	    initBeerDeleteBtn();
+	    clearInputs();
+	}
+	$(document).ready(function(){
+		services = new Services();
+
+		$('#beerSubmit').on('click', function(e){
+			e.preventDefault();
+			var noErrors = true;
+			if ( $('#nameInput').val() == "" ){
+				$('#nameInput').addClass('input-error');
+				noErrors = false;
+			} 
+			if ( $('#styleInput').val() == "" ){
+				$('#styleInput').addClass('input-error');
+				noErrors = false;
+			}
+			if ( $('#abvInput').val() == "" ){
+				$('#abvInput').addClass('input-error');
+				noErrors = false;
+			}
+			if ( $('#breweryInput').val() == "" ){
+				$('#breweryInput').addClass('input-error');
+				noErrors = false;
+			}
+			if ( $('#locationInput').val() == "" ){
+				$('#locationInput').addClass('input-error');
+				noErrors = false;
+			} 
+
+			if (noErrors == true) {
+				$('input').removeClass('input-error');
+				var newBeer = {
+					name: $('#nameInput').val(),
+					style: $('#styleInput').val(),
+					abv: $('#abvInput').val(),
+					brewery: $('#breweryInput').val(),
+					location: $('#locationInput').val()
+				}
+				services.createBeer(newBeer);
+			}
+		});
+		$('.cancel-btn').on('click', function(e){
+			hideModal();
+		});
+		$('#deleteBtn').on('click', function(e){
+			var id = $('.delete-modal').data('id');
+			services.deleteBeer(id);
+		});
+		$('#changePwBtn').on('click', function(){
+			services.changePW($('#changePwInput').val(), $('#confirmChangePwInput').val());
+		});
+		$('.login-btn').on('click', function(e){
+			services.login($('#loginUserInput').val(), $('#loginPwInput').val());
+		})
+		$('#manageBtn').on('click', function(){
+			showMenuModal();
+		});
+		$('#loginPwInput').on('keyup', function(e){
+			if (e.keyCode == 13){
+				services.login($('#loginUserInput').val(), $('#loginPwInput').val());
+			}
+		})
+		$('#logoutBtn').on('click', function(e){
+			showLogin();
+			$('#beerListingTable').remove();
+		});
+	});
+	</script>
+</body>
+</html>
